@@ -2,13 +2,13 @@
 require('dotenv').config();
 
 // Import Models
-//require('./models');
+require('./models');
 
 // Import Express, Mongoose, Cors and Routes
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-//const routes = require('./routes');
+const routes = require('./routes');
 
 // Set Express
 const app = express();
@@ -17,6 +17,9 @@ const app = express();
 app.use(cors());
 app.use(express.json())
 
+mongoose.connect(process.env.URI_MONGO);
+
+app.use('/v1', routes);
 
 // Deploying the Server
 app.listen(process.env.PORT, () => {
