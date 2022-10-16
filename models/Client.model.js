@@ -59,12 +59,14 @@ ClientSchema.methods.verifyPassword = function (password) {
 
 //aqui seria de evaluar si se amplia con el nombre, apellido
 ClientSchema.methods.generateJWT = function () {
-  return jwt.sign({ idClient: this._id, rol: this.rol }, process.env.SECRET);
+  return jwt.sign({ idClient: this._id, rol: this.rol, firstname: this.firstname, lastname: this.lastname }, process.env.SECRET);
 };
 
 ClientSchema.methods.onSingGenerateJWT = function () {
   return {
     idClient: this._id,
+    firstname: this.firstname,
+    lastname: this.lastname,
     rol: this.rol,
     token: this.generateJWT(),
   };

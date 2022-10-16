@@ -1,4 +1,5 @@
 const express = require('express');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -12,8 +13,8 @@ const {
 
 router.post('/', signUpClient);
 router.post('/login', login);
-router.get('/findByEmail', findByEmail);
-router.put('/updateByEmail', updateClient);
-router.delete('/removeByEmail', removeClient);
+router.get('/findByEmail', auth, findByEmail);
+router.put('/updateByEmail', auth, updateClient);
+router.delete('/removeByEmail', auth, removeClient);
 
 module.exports = router;
