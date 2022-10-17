@@ -10,6 +10,12 @@ const { enterNewArrival,
         updateNewArrival,
         removeNewArrival, } = require('./NewArrival.controller');
 
+const { enterLaptop,
+        getLaptop,
+        getLaptopById,
+        updateLaptop,
+        removeLaptop, } = require('./Laptop.controller');
+
 module.exports = {
     signUpClient,
     login,
@@ -21,4 +27,9 @@ module.exports = {
     getNewArrivalById,
     updateNewArrival,
     removeNewArrival,
+    enterLaptop,
+    getLaptop,
+    getLaptopById,
+    updateLaptop,
+    removeLaptop,
 };

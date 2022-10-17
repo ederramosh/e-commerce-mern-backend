@@ -1,12 +1,8 @@
 const mongoose = require('mongoose');
-const NewArrival = mongoose.model('NewArrival');
+const Laptop = mongoose.model('Laptop');
 
-const enterNewArrival = async (req, res) => {
+const enterLaptop = async (req, res) => {
     try {
-        //This gets the object with the information that we passed, like idClient, rol and IAT
-        //The "iat" (issued at) claim identifies the time at which the JWT was issued, it uses to 
-        //implement expiration time or date for a token (for security purporse)
-        //console.log(req.user);
         if(req.user.rol !== 'admin') {
             return res.status(401).json({
                 msg: 'Unauthorized',
@@ -25,9 +21,9 @@ const enterNewArrival = async (req, res) => {
             itemImage,
         }
 
-        const newArrival = new NewArrival(newElement);
+        const laptop = new Laptop(newElement);
 
-        const result = await newArrival.save();
+        const result = await laptop.save();
 
         return res.status(201).json({
             msg: 'Item submitted successfully',
@@ -42,12 +38,12 @@ const enterNewArrival = async (req, res) => {
     };
 };
 
-const getNewArrival = async (req, res) => {
+const getLaptop = async (req, res) => {
     try {
         //This option can filter the items in stock or  items that the store does not have it.
         const { availability } = req.body;
 
-        const itemsInStock = await NewArrival.find({ availability: availability });
+        const itemsInStock = await Laptop.find({ availability: availability });
         return res.status(201).json({
             msg: 'List of items founded',
             details: itemsInStock,
@@ -60,11 +56,11 @@ const getNewArrival = async (req, res) => {
     }
 }
 
-const getNewArrivalById = async (req, res) => {
+const getLaptopById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const item = await NewArrival.findById(id);
+        const item = await Laptop.findById(id);
 
         return res.status(201).json({
             msg: 'Item founded',
@@ -78,7 +74,7 @@ const getNewArrivalById = async (req, res) => {
     }
 }
 
-const updateNewArrival = async (req, res) => {
+const updateLaptop = async (req, res) => {
     try {
 
         if(req.user.rol !== 'admin') {
@@ -90,7 +86,7 @@ const updateNewArrival = async (req, res) => {
 
         const { id } = req.params;
 
-        const result = await NewArrival.findByIdAndUpdate(
+        const result = await Laptop.findByIdAndUpdate(
             id,
             { $set: req.body },
             { new: true }
@@ -109,7 +105,7 @@ const updateNewArrival = async (req, res) => {
     }
 }
 
-const removeNewArrival = async (req, res) => {
+const removeLaptop = async (req, res) => {
     try {
 
         if(req.user.rol !== 'admin') {
@@ -121,7 +117,7 @@ const removeNewArrival = async (req, res) => {
 
         const { id } = req.params;
 
-        const result = await NewArrival.findByIdAndDelete(id);
+        const result = await Laptop.findByIdAndDelete(id);
 
         return res.status(201).json({
             msg: 'Process completed successfully',
@@ -136,9 +132,9 @@ const removeNewArrival = async (req, res) => {
 }
 
 module.exports = {
-    enterNewArrival,
-    getNewArrival,
-    getNewArrivalById,
-    updateNewArrival,
-    removeNewArrival,
+    enterLaptop,
+    getLaptop,
+    getLaptopById,
+    updateLaptop,
+    removeLaptop,
 }
