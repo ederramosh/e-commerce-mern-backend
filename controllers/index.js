@@ -18,26 +18,33 @@ const { enterLaptop,
         updateLaptop,
         removeLaptop, } = require('./Laptop.controller');
 
-        const { enterPCGamer,
-                getPCGamer,
-                getPCGamerById,
-                getPCGamerByPrice,
-                updatePCGamer,
-                removePCGamer, } = require('./PCGamer.controller');
+const { enterPCGamer,
+        getPCGamer,
+        getPCGamerById,
+        getPCGamerByPrice,
+        updatePCGamer,
+        removePCGamer, } = require('./PCGamer.controller');
         
-        const { enterStreamingEquipment,
-                getStreamingEquipment,
-                getStreamingEquipmentById,
-                getStreamingEquipmentByPrice,
-                updateStreamingEquipment,
-                removeStreamingEquipment, } = require('./StreamingEquipment.controller');
+const { enterStreamingEquipment,
+        getStreamingEquipment,
+        getStreamingEquipmentById,
+        getStreamingEquipmentByPrice,
+        updateStreamingEquipment,
+        removeStreamingEquipment, } = require('./StreamingEquipment.controller');
 
-        const { enterGadgets,
-                getGadgets,
-                getGadgetsById,
-                getGadgetsByPrice,
-                updateGadgets,
-                removeGadgets, } = require('./Gadgets.controller');
+const { enterGadgets,
+        getGadgets,
+        getGadgetsById,
+        getGadgetsByPrice,
+        updateGadgets,
+        removeGadgets, } = require('./Gadgets.controller');
+
+const { enterRefurbished,
+        getRefurbished,
+        getRefurbishedById,
+        getRefurbishedByPrice,
+        updateRefurbished,
+        removeRefurbished, } = require('./Refurbished.controller');
 
 module.exports = {
     signUpClient,
@@ -75,4 +82,10 @@ module.exports = {
     getGadgetsByPrice,
     updateGadgets,
     removeGadgets,
+    enterRefurbished,
+    getRefurbished,
+    getRefurbishedById,
+    getRefurbishedByPrice,
+    updateRefurbished,
+    removeRefurbished,
 };

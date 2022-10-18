@@ -4,6 +4,7 @@ const Laptop = require('./Laptop.model');
 const PCGamer = require('./PCGamer.model');
 const StreamingEquipment = require('./StreamingEquipment.model');
 const Gadgets = require('./Gadgets.model');
+const Refurbished = require('./Reburbished.model');
 
 module.exports = {
     Client,
@@ -12,4 +13,5 @@ module.exports = {
     PCGamer,
     StreamingEquipment,
     Gadgets,
+    Refurbished,
 }
