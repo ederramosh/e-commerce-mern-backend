@@ -32,6 +32,13 @@ const { enterLaptop,
                 updateStreamingEquipment,
                 removeStreamingEquipment, } = require('./StreamingEquipment.controller');
 
+        const { enterGadgets,
+                getGadgets,
+                getGadgetsById,
+                getGadgetsByPrice,
+                updateGadgets,
+                removeGadgets, } = require('./Gadgets.controller');
+
 module.exports = {
     signUpClient,
     login,
@@ -62,4 +69,10 @@ module.exports = {
     getStreamingEquipmentByPrice,
     updateStreamingEquipment,
     removeStreamingEquipment,
+    enterGadgets,
+    getGadgets,
+    getGadgetsById,
+    getGadgetsByPrice,
+    updateGadgets,
+    removeGadgets,
 };
