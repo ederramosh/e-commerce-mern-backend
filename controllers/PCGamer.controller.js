@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const Laptop = mongoose.model('Laptop');
+const PCGamer = mongoose.model('PCGamer');
 
-const enterLaptop = async (req, res) => {
+const enterPCGamer = async (req, res) => {
     try {
         if(req.user.rol !== 'admin') {
             return res.status(401).json({
@@ -21,9 +21,9 @@ const enterLaptop = async (req, res) => {
             itemImage,
         }
 
-        const laptop = new Laptop(newElement);
+        const pcGamer = new PCGamer(newElement);
 
-        const result = await laptop.save();
+        const result = await pcGamer.save();
 
         return res.status(201).json({
             msg: 'Item submitted successfully',
@@ -38,12 +38,12 @@ const enterLaptop = async (req, res) => {
     };
 };
 
-const getLaptop = async (req, res) => {
+const getPCGamer = async (req, res) => {
     try {
         //This option can filter the items in stock or  items that the store does not have it.
         const { availability } = req.body;
 
-        const itemsInStock = await Laptop.find({ availability: availability });
+        const itemsInStock = await PCGamer.find({ availability: availability });
 
         if(itemsInStock.length === 0) {
             return res.status(404).json({
@@ -51,7 +51,7 @@ const getLaptop = async (req, res) => {
                 details: 'There is no information available'
             })
         };
-        
+
         return res.status(201).json({
             msg: 'List of items founded',
             details: itemsInStock,
@@ -64,11 +64,11 @@ const getLaptop = async (req, res) => {
     }
 }
 
-const getLaptopById = async (req, res) => {
+const getPCGamerById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const item = await Laptop.findById(id);
+        const item = await PCGamer.findById(id);
 
         return res.status(201).json({
             msg: 'Item founded',
@@ -78,14 +78,14 @@ const getLaptopById = async (req, res) => {
         return res.status(400).json({
             msg: 'Error',
             details: e.message,
-        })
+        });
     }
 }
 
-const getLaptopByPrice = async (req, res) => {
+const getPCGamerByPrice = async (req, res) => {
     try {
         const { less, grather } = req.body;
-        const itemsInRange = await Laptop.find({
+        const itemsInRange = await PCGamer.find({
             price: { $lte: grather, $gte: less }
         });
 
@@ -102,7 +102,7 @@ const getLaptopByPrice = async (req, res) => {
     }
 }
 
-const updateLaptop = async (req, res) => {
+const updatePCGamer = async (req, res) => {
     try {
 
         if(req.user.rol !== 'admin') {
@@ -114,7 +114,7 @@ const updateLaptop = async (req, res) => {
 
         const { id } = req.params;
 
-        const result = await Laptop.findByIdAndUpdate(
+        const result = await PCGamer.findByIdAndUpdate(
             id,
             { $set: req.body },
             { new: true }
@@ -133,7 +133,7 @@ const updateLaptop = async (req, res) => {
     }
 }
 
-const removeLaptop = async (req, res) => {
+const removePCGamer = async (req, res) => {
     try {
 
         if(req.user.rol !== 'admin') {
@@ -145,7 +145,7 @@ const removeLaptop = async (req, res) => {
 
         const { id } = req.params;
 
-        const result = await Laptop.findByIdAndDelete(id);
+        const result = await PCGamer.findByIdAndDelete(id);
 
         return res.status(201).json({
             msg: 'Process completed successfully',
@@ -160,10 +160,10 @@ const removeLaptop = async (req, res) => {
 }
 
 module.exports = {
-    enterLaptop,
-    getLaptop,
-    getLaptopById,
-    getLaptopByPrice,
-    updateLaptop,
-    removeLaptop,
+    enterPCGamer,
+    getPCGamer,
+    getPCGamerById,
+    getPCGamerByPrice,
+    updatePCGamer,
+    removePCGamer,
 }

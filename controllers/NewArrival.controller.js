@@ -48,6 +48,14 @@ const getNewArrival = async (req, res) => {
         const { availability } = req.body;
 
         const itemsInStock = await NewArrival.find({ availability: availability });
+
+        if(itemsInStock.length === 0) {
+            return res.status(404).json({
+                msg: 'List empty',
+                details: 'There is no information available'
+            })
+        };
+        
         return res.status(201).json({
             msg: 'List of items founded',
             details: itemsInStock,
@@ -75,6 +83,26 @@ const getNewArrivalById = async (req, res) => {
             msg: 'Error',
             details: e.message,
         })
+    }
+}
+
+const getNewArrivalByPrice = async (req, res) => {
+    try {
+        const { less, grather } = req.body;
+        const itemsInRange = await NewArrival.find({
+            price: { $lte: grather, $gte: less }
+        });
+
+        res.status(201).json({
+            msg: 'Items founded less than',
+            details: itemsInRange,
+        })
+
+    } catch (e) {
+        return res.status(400).json({
+            msg: 'Error',
+            details: e.message,
+        });
     }
 }
 
@@ -139,6 +167,7 @@ module.exports = {
     enterNewArrival,
     getNewArrival,
     getNewArrivalById,
+    getNewArrivalByPrice,
     updateNewArrival,
     removeNewArrival,
 }
