@@ -24,6 +24,13 @@ const { enterLaptop,
                 getPCGamerByPrice,
                 updatePCGamer,
                 removePCGamer, } = require('./PCGamer.controller');
+        
+        const { enterStreamingEquipment,
+                getStreamingEquipment,
+                getStreamingEquipmentById,
+                getStreamingEquipmentByPrice,
+                updateStreamingEquipment,
+                removeStreamingEquipment, } = require('./StreamingEquipment.controller');
 
 module.exports = {
     signUpClient,
@@ -49,4 +56,10 @@ module.exports = {
     getPCGamerByPrice,
     updatePCGamer,
     removePCGamer,
+    enterStreamingEquipment,
+    getStreamingEquipment,
+    getStreamingEquipmentById,
+    getStreamingEquipmentByPrice,
+    updateStreamingEquipment,
+    removeStreamingEquipment,
 };
