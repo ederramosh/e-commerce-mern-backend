@@ -7,6 +7,7 @@ const pcGamer = require('./PCGamer.route');
 const streamingEquipment = require('./StreamingEquipment.route');
 const gadgets = require('./Gadgets.route');
 const refurbished = require('./Refurbished.route');
+const sale = require('./Sale.route');
 
 router.use('/client', clientRouter);
 router.use('/newarrival', newArrivalRouter);
@@ -15,5 +16,6 @@ router.use('/pcgamer', pcGamer);
 router.use('/streamingequipment', streamingEquipment);
 router.use('/gadgets', gadgets);
 router.use('/refurbished', refurbished);
+router.use('/sale', sale);
 
 module.exports = router;

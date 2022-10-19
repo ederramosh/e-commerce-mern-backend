@@ -46,6 +46,10 @@ const { enterRefurbished,
         updateRefurbished,
         removeRefurbished, } = require('./Refurbished.controller');
 
+const { submitSale,
+        getAllSales,
+        getSalesByDate, } = require('./Sale.controller');
+
 module.exports = {
     signUpClient,
     login,
@@ -88,4 +92,7 @@ module.exports = {
     getRefurbishedByPrice,
     updateRefurbished,
     removeRefurbished,
+    submitSale,
+    getAllSales,
+    getSalesByDate,
 };
