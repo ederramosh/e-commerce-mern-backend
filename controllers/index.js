@@ -1,6 +1,6 @@
 const { signUpClient,
         login,
-        findByEmail,
+        findById,
         updateClient,
         removeClient, } = require('./Client.controller');
 
@@ -53,7 +53,7 @@ const { submitSale,
 module.exports = {
     signUpClient,
     login,
-    findByEmail,
+    findById,
     updateClient,
     removeClient,
     enterNewArrival,

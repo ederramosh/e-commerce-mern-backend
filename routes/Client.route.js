@@ -6,14 +6,14 @@ const router = express.Router();
 const {
     signUpClient,
     login,
-    findByEmail,
+    findById,
     updateClient,
     removeClient,
 } = require('../controllers');
 
 router.post('/', signUpClient);
 router.post('/login', login);
-router.get('/findByEmail', auth, findByEmail);
+router.get('/findById', auth, findById);
 router.put('/updateByEmail', auth, updateClient);
 router.delete('/removeByEmail', auth, removeClient);
 

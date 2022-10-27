@@ -20,7 +20,7 @@ const signUpClient = async (req, res) => {
 
         return res.status(201).json({
             msg: "User created",
-            token: client.onSingGenerateJWT(),
+            details: client.onSingGenerateJWT(),
         });
     } catch (e) {
         return res.status(400).json({
@@ -47,13 +47,16 @@ const login = async (req, res) => {
             return res.status(200).json({
                 msg: "Logged in successfully",
                 token: client.generateJWT(),
+                rol: client.rol,
+                firstname: client.firstname,
+                lastname: client.lastname,
             });
+        } else {
+            return res.status(400).json({
+                msg: "Invalid credencials",
+                details: "Email or password are invalid",
+            })
         }
-
-        return res.status(400).json({
-            msg: "Invalid credencials",
-            details: "Email or password are invalid",
-        })
     } catch (e) {
         return res.status(400).json({
             msg: "Error",
@@ -62,17 +65,12 @@ const login = async (req, res) => {
     }
 };
 
-const findByEmail = async (req, res) => {
+const findById = async (req, res) => {
     try {
-        const { email } = req.body;
-        const client = await Client.findOne({ email: email }, 'firstname lastname email address phone');
-
-        if(!client) {
-            return res.status(400).json({
-                msg: 'User not founded',
-                details: 'Please check your credentials',
-            });
-        }
+        //You can get the information in this way, without passing the id through the url, you pass it using the user setting
+        const id = req.user.idClient;
+        console.log(id);
+        const client = await Client.findById(id, {firstname: 1, lastname: 1, address: 1, phone: 1, email: 1});
 
         return res.status(200).json({
             msg: "User founded",
@@ -136,7 +134,7 @@ const removeClient = async (req, res) => {
 module.exports = {
     signUpClient,
     login,
-    findByEmail,
+    findById,
     updateClient,
     removeClient,
 }
