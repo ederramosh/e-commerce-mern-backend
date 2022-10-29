@@ -40,10 +40,7 @@ const enterPCGamer = async (req, res) => {
 
 const getPCGamer = async (req, res) => {
     try {
-        //This option can filter the items in stock or  items that the store does not have it.
-        const { availability } = req.body;
-
-        const itemsInStock = await PCGamer.find({ availability: availability });
+        const itemsInStock = await PCGamer.find();
 
         if(itemsInStock.length === 0) {
             return res.status(404).json({
