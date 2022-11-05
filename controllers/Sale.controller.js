@@ -3,15 +3,7 @@ const Sale = mongoose.model('Sale');
 
 const submitSale = async ( req, res ) => {
     try {
-        const { client, date, purchase, price, tax } = req.body;
-
-        newSale = {
-            client,
-            date,
-            purchase,
-            price,
-            tax
-        }
+        const newSale = req.body;
 
         const sale = new Sale(newSale);
 

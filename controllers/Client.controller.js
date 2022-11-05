@@ -47,6 +47,7 @@ const login = async (req, res) => {
             return res.status(200).json({
                 msg: "Logged in successfully",
                 token: client.generateJWT(),
+                idClient: client.id,
                 rol: client.rol,
                 firstname: client.firstname,
                 lastname: client.lastname,

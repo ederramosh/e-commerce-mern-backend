@@ -10,17 +10,24 @@ const SaleSchema = new mongoose.Schema({
         required: true,
     },
     purchase: {
-        type: String,
+        type: [
+            {
+                name: {
+                    type: String
+                },
+                price: {
+                    type: Number
+                },
+                tax: {
+                    type: Number
+                },
+                total: {
+                    type: Number
+                },
+            }
+        ],
         required: true,
     },
-    price: {
-        type: Number,
-        required: true
-    },
-    tax: {
-        type: Number,
-        required: true,
-    }
 });
 
 mongoose.model('Sale', SaleSchema, 'collectionSale');
