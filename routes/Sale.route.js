@@ -7,7 +7,7 @@ const { submitSale,
         getAllSales,
         getSalesByDate } = require('../controllers');
 
-router.post('/', submitSale);
+router.post('/', auth, submitSale);
 router.get('/', auth, getAllSales);
 router.get('/getSalesByDate', auth, getSalesByDate);
 
